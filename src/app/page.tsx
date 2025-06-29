@@ -1,58 +1,96 @@
-'use client'; // クライアントコンポーネントとしてマーク
+// src/app/page.tsx
+'use client'; // useStateを使うため
 
 import { useState } from 'react';
-import Link from 'next/link'; // ページ遷移にNext.jsのLinkを使う
+import Navbar from '../components/Navbar'; // ここでNavbarをインポート
+import Modal from '../components/Modal';
+import ContactForm from '../components/ContactForm';
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // メニューの開閉状態を管理
+export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false); // モーダルの開閉状態
 
   return (
-    <nav className="p-4 bg-blue-700 text-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* ロゴやサイト名 */}
-        <Link href="/" className="text-2xl font-bold">
-          [あなたの名前/サイト名]
-        </Link>
+    <div className="flex flex-col min-h-screen">
+      {/* Navbarをここで呼び出し、onContactClickを渡す */}
+      <Navbar onContactClick={() => setIsModalOpen(true)} /> 
 
-        {/* ハンバーガーアイコン (mdサイズ以下で表示) */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white focus:outline-none"
-        >
-          {isOpen ? (
-            // 閉じるアイコン (xマークなど)
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          ) : (
-            // ハンバーガーアイコン (3本線)
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          )}
-        </button>
+      <main className="flex-grow container mx-auto p-4 sm:p-8">
+        {/* About Section */}
+        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">About Me</h2>
+          <p className="text-lg">
+            こんにちは！私はウェブ開発者のkometoumeです。フロントエンドからバックエンドまで幅広く対応します。
+            ユーザーが使いやすく、美しいデザインと高いパフォーマンスを両立させたウェブアプリケーションの開発を得意としています。
+            新しい技術を学ぶことに常に情熱を燃やし、日々の課題を解決するソリューションを創造することを目指しています。
+          </p>
+        </section>
 
-        {/* ナビゲーションメニュー (mdサイズ以上で常に表示、以下でハンバーガー開閉に連動) */}
-        <div
-          className={`md:flex md:items-center md:space-x-4 ${
-            isOpen ? 'block' : 'hidden'
-          } absolute md:static top-16 left-0 right-0 bg-blue-700 md:bg-transparent p-4 md:p-0 w-full text-center md:w-auto`}
-        >
-          <ul className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-0">
-            <li>
-              <Link href="/about" onClick={() => setIsOpen(false)} className="hover:text-blue-200">
-                自己紹介
-              </Link>
-            </li>
-            <li>
-              <Link href="/projects" onClick={() => setIsOpen(false)} className="hover:text-blue-200">
-                プロジェクト
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-blue-200">
-                お問い合わせ
-              </Link>
-            </li>
+        {/* Skills Section */}
+        <section id="skills" className="bg-white p-6 mb-8 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">Skills</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-lg">
+            <li className="bg-blue-50 p-3 rounded-md">HTML / CSS / JavaScript</li>
+            <li className="bg-blue-50 p-3 rounded-md">React / Next.js</li>
+            <li className="bg-blue-50 p-3 rounded-md">Node.js / Express</li>
+            <li className="bg-blue-50 p-3 rounded-md">Git / GitHub</li>
+            <li className="bg-blue-50 p-3 rounded-md">Tailwind CSS</li>
+            <li className="bg-blue-50 p-3 rounded-md">TypeScript</li>
+            {/* その他のスキルもここに追加 */}
           </ul>
-        </div>
-      </div>
-    </nav>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="bg-white p-6 mb-8 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="project-card border border-gray-200 p-4 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-2">プロジェクトA (Todoアプリ)</h3>
+              <p className="text-gray-700 mb-3">Reactを使ったTodoアプリ。タスクの追加・削除・完了が可能。</p>
+              <a 
+                href="https://github.com/kometoume/project-a" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                GitHubを見る
+              </a>
+            </div>
+            <div className="project-card border border-gray-200 p-4 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-2">プロジェクトB (メモ管理API)</h3>
+              <p className="text-gray-700 mb-3">Node.jsを使ったREST API。簡単なメモ管理サービス。</p>
+              <a 
+                href="https://github.com/kometoume/project-b" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                GitHubを見る
+              </a>
+            </div>
+            {/* 他のプロジェクトもここに追加 */}
+          </div>
+        </section>
+
+        {/* お問い合わせボタン（Navbarから開くので、このページの直下に置く必要がなければ削除してもOK） */}
+        <section className="text-center mt-8">
+            <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-8 py-4 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors shadow-lg text-lg font-bold"
+            >
+                お問い合わせはこちら (メインコンテンツ内)
+            </button>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="w-full p-4 bg-gray-800 text-white text-center mt-8">
+        <p>&copy; {new Date().getFullYear()} kometoume Portfolio. All rights reserved.</p>
+      </footer>
+
+      {/* Contact Modal */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ContactForm />
+      </Modal>
+    </div>
   );
 }
