@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 各セクションのIDに適用する基本的な調整 */
+section[id] {
+  scroll-margin-top: 150px; /* ここを調整！固定ヘッダーの高さに合わせてpx値を設定 */
+  /* 例えば、ヘッダーが常に80pxなら80px、大きくなっても120pxくらいなら120pxなど */
+}
