@@ -1,4 +1,4 @@
-// app/page.tsx
+// src/app/page.tsx
 
 "use client";
 
@@ -7,9 +7,10 @@ import { createHtmlPortalNode, InPortal, OutPortal } from 'react-reverse-portal'
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
 import ContactForm from "../components/ContactForm";
+import Image from "next/image"; // Image警告を解決するために以前追加した場合は、これも存在することを確認してください
 
-// ★ここを変更: data/projects.ts から Project と projects をインポート
-// import { Project, projects } from "../data/projects";
+// ★ここが重要な変更です: 下の行のコメントアウトを解除します
+import { Project, projects } from "../data/projects";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
