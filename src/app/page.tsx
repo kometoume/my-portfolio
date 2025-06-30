@@ -100,15 +100,13 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section
-          id="projects"
-          className="bg-white p-6 mb-8 rounded-lg shadow-md"
-        >
-          <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">
-            Projects
+        <section
+          id="projects"
+          className="bg-white p-6 mb-8 rounded-lg shadow-md"
+        >
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">
             Projects
-          </h2>
+          </h2> {/* ここだけ残してください。重複していた <h2 ...>Projects の行を削除します。 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project) => (
               <div key={project.id} className="project-card border border-gray-200 p-6 rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition-shadow duration-300 flex flex-col">

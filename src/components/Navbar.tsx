@@ -15,8 +15,8 @@ export default function Navbar({ onContactClick }: NavbarProps) {
     <nav className="flex flex-col w-full">
       <div className="bg-blue-800 p-4 text-white shadow-md">
         <div className="container mx-auto flex flex-col items-center">
-          {/* ↓↓↓ ここから修正 ↓↓↓ */}
-          <Link href="/" className="text-3xl font-bold mb-4 md:mb-0">
+          {/* この行を正確に確認し、修正してください */}
+          <Link href="/" className="text-3xl font-bold mb-4 md:mb-0"> {/* ここがポイント！href="/" の中の"/"と""が半角であることを確認 */}
             八木美智惠 ポートフォリオ
           </Link>
         </div>
