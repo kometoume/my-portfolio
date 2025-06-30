@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link'; // ← この行を追加
 
 interface NavbarProps {
   onContactClick: () => void;
@@ -11,14 +12,13 @@ export default function Navbar({ onContactClick }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    // nav自体にはfixedをつけない。OutPortalを囲むdivにfixedをつける
-    <nav className="flex flex-col w-full"> {/* w-fullは必要 */}
-      {/* タイトルセクション */}
+    <nav className="flex flex-col w-full">
       <div className="bg-blue-800 p-4 text-white shadow-md">
         <div className="container mx-auto flex flex-col items-center">
-          <a href="/" className="text-3xl font-bold mb-4 md:mb-0">
+          {/* ↓↓↓ ここから修正 ↓↓↓ */}
+          <Link href="/" className="text-3xl font-bold mb-4 md:mb-0">
             八木美智惠 ポートフォリオ
-          </a>
+          </Link>
         </div>
       </div>
 

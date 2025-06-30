@@ -9,7 +9,7 @@ import Modal from "../components/Modal";
 import ContactForm from "../components/ContactForm";
 
 // ★ここを変更: data/projects.ts から Project と projects をインポート
-import { Project, projects } from "../data/projects";
+// import { Project, projects } from "../data/projects";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
