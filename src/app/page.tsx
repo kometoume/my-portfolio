@@ -106,20 +106,24 @@ export default function Home() {
         >
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">
             Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
-              <div key={project.id} className="project-card border border-gray-200 p-6 rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                {/* プロジェクト画像 */}
-                {project.image && (
-                  <div className="mb-4">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} のスクリーンショット`}
-                      className="w-full h-48 object-cover rounded-md border border-gray-200"
-                    />
-                  </div>
-                )}
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">
+            Projects
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((project) => (
+              <div key={project.id} className="project-card border border-gray-200 p-6 rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                {/* プロジェクト画像 */}
+                {project.image && (
+                  <div className="mb-4">
+                    <Image // ★変更点: `img` を `Image` に変更
+                      src={project.image}
+                      alt={`${project.title} のスクリーンショット`}
+                      className="w-full h-48 object-cover rounded-md border border-gray-200"
+                      width={700} // ★追加: 適切な幅を設定 (例: 700)。画像のアスペクト比に合わせて調整してください
+                      height={300} // ★追加: 適切な高さを設定 (例: 300)。`h-48` のCSSクラスに合わせて調整してください (12rem = 192px)
+                    />
+                  </div>
+                )}
 
                 {/* プロジェクトタイトル */}
                 <h3 className="text-2xl font-bold mb-2 text-blue-800">

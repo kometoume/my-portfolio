@@ -33,7 +33,7 @@ export const projects: Project[] = [
     id: "project2",
     title: "〇〇サービスLP (仮称)",
     description: "架空のサービス「〇〇」のランディングページです。ターゲットユーザーにサービスの魅力を最大限に伝えるためのデザインと、コンバージョンを意識したUI/UXを設計しました。",
-    image: "/images/project-b-thumbnail.jpg", // 仮の画像パス
+    image: "/images/project-b-thumbnail.png", // 仮の画像パス
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     githubLink: "https://github.com/kometoume/project-b-repo", // あなたのGitHubリポジトリのURLに置き換えてください
     demoLink: "https://project-b-demo.vercel.app", // デモサイトのURLに置き換えてください
