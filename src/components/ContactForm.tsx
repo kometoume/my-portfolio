@@ -51,7 +51,7 @@ export default function ContactForm() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">お問い合わせ</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-900">お問い合わせ</h2>
       <div className="text-gray-900"> 
       <form id="contactForm" onSubmit={handleSubmit}>
         <label htmlFor="name" className="block mt-4 font-bold text-sm">名前:</label>
