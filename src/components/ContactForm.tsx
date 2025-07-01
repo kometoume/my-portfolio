@@ -52,6 +52,7 @@ export default function ContactForm() {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">お問い合わせ</h2>
+      <div className="text-gray-900"> 
       <form id="contactForm" onSubmit={handleSubmit}>
         <label htmlFor="name" className="block mt-4 font-bold text-sm">名前:</label>
         <input type="text" id="name" name="name" required className="w-full p-2 mt-1 border rounded text-gray-900" />
@@ -74,6 +75,7 @@ export default function ContactForm() {
           {isSubmitting ? '送信中...' : '送信'} {/* ボタンのテキストも変更 */}
         </button>
       </form>
+      </div>
       {formMessage && (
         <p className={`mt-4 font-bold ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
           {formMessage}
