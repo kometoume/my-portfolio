@@ -63,8 +63,8 @@ export default function Home() {
         {/* ... 以降のコンテンツは変更なし ... */}
 
         {/* About Me Section */}
-        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8 scroll-mt-24">
-          <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2">About Me</h2>
+        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8 scroll-mt-28">
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">About Me</h2>
           <p className="text-lg mb-4 text-gray-900">
             Webコーダーの八木美智惠です。大学院修了後、美術教員および教育機関の助手として教育現場で経験を積みました。その後、職業訓練校でWebデザインの知識を習得。現在は正社員のWebコーダーとして5年間、フルリモート環境下で業務に従事しています。自己管理を意識しながら業務を遂行し、円滑なコミュニケーションを心がけています。
           </p>
@@ -74,28 +74,28 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="bg-white p-6 mb-8 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2">Skills</h2>
+        <section id="skills" className="bg-white p-6 mb-8 rounded-lg shadow-md scroll-mt-28">
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">Skills</h2>
           <div className="mb-6">
             <h3 className="text-2xl font-semibold mb-3 text-gray-800">フロントエンド開発</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-lg">
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 HTML / CSS / JavaScript
                 <span className="ml-2 px-2 py-0.5 bg-blue-600 text-white text-xs font-semibold rounded-full">5年</span>
               </li>
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 React / Next.js
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
                   学習中
                 </span>
               </li>
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Tailwind CSS
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
                   学習中
                 </span>
               </li>
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 TypeScript
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
                   学習中
@@ -106,7 +106,7 @@ export default function Home() {
           <div className="mb-6">
             <h3 className="text-2xl font-semibold mb-3 text-gray-800">CMS</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-lg">
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 WordPress
                 <span className="ml-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-full">
                   2年 
@@ -117,7 +117,7 @@ export default function Home() {
           <div className="mb-6">
             <h3 className="text-2xl font-semibold mb-3 text-gray-800">バックエンド開発</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-lg">
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Node.js
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
                   学習中
@@ -128,7 +128,7 @@ export default function Home() {
           <div className="mb-6">
             <h3 className="text-2xl font-semibold mb-3 text-gray-800">バージョン管理</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-lg">
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Git / GitHub
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
                   学習中
@@ -139,15 +139,15 @@ export default function Home() {
           <div className="mb-6">
             <h3 className="text-2xl font-semibold mb-3 text-gray-800">デザインツール</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-lg">
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Adobe Photoshop
                 <span className="ml-2 px-2 py-0.5 bg-blue-600 text-white text-xs font-semibold rounded-full">5年</span>
               </li>
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Adobe Illustrator
                 <span className="ml-2 px-2 py-0.5 bg-blue-600 text-white text-xs font-semibold rounded-full">5年</span>
               </li>
-              <li className="bg-blue-50 p-3 rounded-md shadow-sm">
+              <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Adobe Premiere Pro
                 <span className="ml-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-full">
                   2年
@@ -158,8 +158,8 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="bg-white p-6 mb-8 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2">Projects</h2>
+        <section id="projects" className="bg-white p-6 mb-8 rounded-lg shadow-md scroll-mt-28">
+          <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map(
               (
