@@ -63,7 +63,7 @@ export default function Home() {
         {/* ... 以降のコンテンツは変更なし ... */}
 
         {/* About Me Section */}
-        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8 scroll-mt-28">
+        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">About Me</h2>
           <p className="text-lg mb-4 text-gray-900">
             Webコーダーの八木美智惠です。大学院修了後、美術教員および教育機関の助手として教育現場で経験を積みました。その後、職業訓練校でWebデザインの知識を習得。現在は正社員のWebコーダーとして5年間、フルリモート環境下で業務に従事しています。自己管理を意識しながら業務を遂行し、円滑なコミュニケーションを心がけています。
@@ -74,7 +74,7 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="bg-white p-6 mb-8 rounded-lg shadow-md scroll-mt-28">
+        <section id="skills" className="bg-white p-6 mb-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">Skills</h2>
           <div className="mb-6">
             <h3 className="text-2xl font-semibold mb-3 text-gray-800">フロントエンド開発</h3>
@@ -158,7 +158,7 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="bg-white p-6 mb-8 rounded-lg shadow-md scroll-mt-28">
+        <section id="projects" className="bg-white p-6 mb-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map(
