@@ -67,7 +67,7 @@ export default function ContactForm() {
           className={`mt-6 py-2 px-4 rounded transition-colors ${
             isSubmitting // 送信中かどうかに応じてスタイルを変更
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700'
+              : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
           } text-white`}
           disabled={isSubmitting} // 送信中はボタンを無効化
         >

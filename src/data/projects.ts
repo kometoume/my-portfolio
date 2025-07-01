@@ -15,34 +15,60 @@ export interface Project {
 // プロジェクトデータの配列
 export const projects: Project[] = [
   {
-    id: "project1",
-    title: "オリジナルWebサイトA (仮称)",
-    description: "ユーザーが簡単に情報を投稿・閲覧できる、シンプルな掲示板形式のウェブアプリケーションです。リアルタイム性を重視し、直感的な操作感を目指しました。",
-    image: "/images/project-a-thumbnail.png", // 仮の画像パス。実際にはあなたのプロジェクトのスクリーンショットを配置してください。
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Socket.IO", "Tailwind CSS"],
-    githubLink: "https://github.com/kometoume/project-a-repo", // あなたのGitHubリポジトリのURLに置き換えてください
-    demoLink: "https://project-a-demo.vercel.app", // デモサイトのURLに置き換えてください
+    id: 'project1',
+    title: 'クライアントのWebサイト',
+    description:
+      'クライアントのWebサイトです。クライアントの要望に応えつつ、サイトの顔となるスライダーのデザインや、ユーザー体験を向上させる見積もりシミュレーションの設計・実装を担当しました。',
+    image: '/images/project-a-thumbnail.png', // 仮の画像パス。実際にはあなたのプロジェクトのスクリーンショットを配置してください。
+    technologies: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Adobe Photoshop', 'Adobe Illustrator'],
+    demoLink: 'https://www.scsk.jp/sp/nvidia/index.html', // デモサイトのURLに置き換えてください
     points: [
-      "リアルタイム通知機能の実装",
-      "レスポンシブデザイン対応",
-      "API連携によるデータ取得と表示の最適化",
-      "コンポーネント指向による再利用性の高いコード設計",
+      'レスポンシブデザイン対応',
+      '見積もりシミュレーションの作成',
+      'スライダー導入',
+      'ポップアップバナー導入',
+      '図版作成',
     ],
   },
   {
-    id: "project2",
-    title: "〇〇サービスLP (仮称)",
-    description: "架空のサービス「〇〇」のランディングページです。ターゲットユーザーにサービスの魅力を最大限に伝えるためのデザインと、コンバージョンを意識したUI/UXを設計しました。",
-    image: "/images/project-b-thumbnail.png", // 仮の画像パス
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    githubLink: "https://github.com/kometoume/project-b-repo", // あなたのGitHubリポジトリのURLに置き換えてください
-    demoLink: "https://project-b-demo.vercel.app", // デモサイトのURLに置き換えてください
+    id: 'project2',
+    title: 'クライアントのWebサイト',
+    description:
+      'クライアントのWebサイトにおいて、トップページの印象を左右するスライダーのデザインから画像制作、実装・導入までを一貫して担当しました。また、既存サイトの構成やデザインの調整にも対応し、ユーザー動線の見直しや導線設計の改善を行いました。',
+    image: '/images/project-b-thumbnail.png', // 仮の画像パス
+    technologies: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Adobe Photoshop', 'Adobe Illustrator'],
+    demoLink: 'https://www.scsk.jp/sp/clubscsk/', // デモサイトのURLに置き換えてください
     points: [
-      "Figmaからの正確なコーディング",
-      "アニメーションによるユーザーエンゲージメント向上",
-      "SEOを考慮したマークアップ",
-      "アクセシビリティ対応",
+      'レスポンシブデザイン対応',
+      'スライダー導入',
+      '図版作成',
     ],
   },
-  // 必要に応じてプロジェクトを追
+    {
+    id: 'project3',
+    title: 'クライアントのWebサイト',
+    description:
+      'クライアントのWebサイトにおいて、サイト全体のデザインを一新するリニューアルプロジェクトに携わり、画像制作、実装・導入までを一貫して担当しました。加えて、サイト全体の構成やデザインの見直しを行い、ユーザー動線を最適化しました。',
+    image: '/images/project-c-thumbnail.png', // 仮の画像パス
+    technologies: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Adobe Photoshop', 'Adobe Illustrator'],
+    demoLink: 'https://www.scsk.jp/sp/ixia/', // デモサイトのURLに置き換えてください
+    points: [
+      'レスポンシブデザイン対応',
+      '図版作成',
+    ],
+  },
+      {
+    id: 'project4',
+    title: 'クライアントのWebサイト',
+    description:
+      'クライアントの要望に応じて、サイト全体の構成やデザインの細部を適宜修正し、図版の作成や既存素材の調整なども行いました。視認性や操作性を意識した改善を重ねることで、ユーザー体験の向上に貢献しています。',
+    image: '/images/project-d-thumbnail.png', // 仮の画像パス
+    technologies: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Adobe Photoshop', 'Adobe Illustrator'],
+    demoLink: 'https://www.scsk.jp/sp/pureflow/index.html', // デモサイトのURLに置き換えてください
+    points: [
+      'レスポンシブデザイン対応',
+      '図版作成',
+    ],
+  },
+  // 必要に応じてプロジェクトを追加
 ];

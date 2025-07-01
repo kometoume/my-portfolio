@@ -13,7 +13,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
 
   return (
     <nav className="flex flex-col w-full">
-      <div className="bg-blue-800 p-4 text-white shadow-md">
+      <div className="bg-white p-4 text-gray-800 shadow-md">
         <div className="container mx-auto flex flex-col items-center">
           {/* この行を正確に確認し、修正してください */}
           <Link href="/" className="text-3xl font-bold mb-4 md:mb-0"> {/* ここがポイント！href="/" の中の"/"と""が半角であることを確認 */}
@@ -23,7 +23,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
       </div>
 
       {/* ナビゲーションセクション */}
-      <div className="bg-blue-700 p-4 text-white shadow-md">
+      <div className="bg-gray-600 p-4 text-white shadow-md">
         <div className="container mx-auto flex flex-col md:flex-row md:justify-center md:items-center">
           {/* モバイルメニューボタン */}
           <button
@@ -69,7 +69,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
                     setIsOpen(false);
                     onContactClick();
                   }}
-                  className="hover:text-blue-200 text-xl"
+                  className="hover:text-blue-200 text-xl cursor-pointer"
                 >
                   Contact
                 </button>
