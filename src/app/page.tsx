@@ -63,12 +63,12 @@ export default function Home() {
         {/* ... 以降のコンテンツは変更なし ... */}
 
         {/* About Me Section */}
-        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
+        <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8 scroll-mt-24">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2">About Me</h2>
-          <p className="text-lg mb-4">
+          <p className="text-lg mb-4 text-gray-900">
             Webコーダーの八木美智惠です。大学院修了後、美術教員および教育機関の助手として教育現場で経験を積みました。その後、職業訓練校でWebデザインの知識を習得。現在は正社員のWebコーダーとして5年間、フルリモート環境下で業務に従事しています。自己管理を意識しながら業務を遂行し、円滑なコミュニケーションを心がけています。
           </p>
-          <p className="text-lg">
+          <p className="text-lg text-gray-900">
             Web制作に携わる中で、より高い専門性を身につけスキルを向上させたいという思いが強まり、今後の成長を見据えて転職を決意いたしました。これまでの実務経験を活かし、新しい環境にも柔軟に対応しながら、さらなる成長を目指して前向きに取り組んでまいります。
           </p>
         </section>
