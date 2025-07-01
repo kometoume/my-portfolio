@@ -16,7 +16,7 @@ export default function Home() {
 
   // ★★★ 重要な修正点ここから ★★★
   // navbarPortalNode を null で初期化。クライアントサイドでのみ設定されるようにします。
-  const [navbarPortalNode, setNavbarPortalNode] = useState(null); // <any> を削除しました
+const [navbarPortalNode, setNavbarPortalNode] = useState<ReturnType<typeof createHtmlPortalNode> | null>(null);
   const fixedNavbarRef = useRef<HTMLDivElement>(null);
   const [navbarHeight, setNavbarHeight] = useState(0);
 
