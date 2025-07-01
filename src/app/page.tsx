@@ -184,11 +184,11 @@ export default function Home() {
                   {/* プロジェクトタイトル */}
                   <h3 className="text-2xl font-bold mb-2 text-gray-800">{project.title}</h3>
                   {/* 説明 */}
-                  <p className="text-gray-700 mb-4">{project.description}</p>
+                  <p className="text-gray-800 mb-4">{project.description}</p>
                   {/* 使用技術 */}
                   {project.technologies.length > 0 && (
                     <div className="mb-4">
-                      <h4 className="text-lg font-semibold mb-2 text-gray-700">使用技術:</h4>
+                      <h4 className="text-lg font-semibold mb-2 text-gray-800">使用技術:</h4>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech, index) => (
                           <span
@@ -204,8 +204,8 @@ export default function Home() {
                   {/* 工夫した点/ポイント */}
                   {project.points.length > 0 && (
                     <div className="mb-4">
-                      <h4 className="text-lg font-semibold mb-2 text-gray-700">ポイント:</h4>
-                      <ul className="list-disc list-inside text-gray-700">
+                      <h4 className="text-lg font-semibold mb-2 text-gray-800">ポイント:</h4>
+                      <ul className="list-disc list-inside text-gray-800">
                         {project.points.map((point, index) => (
                           <li key={index} className="mb-1">
                             {point}
