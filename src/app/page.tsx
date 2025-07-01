@@ -1,23 +1,32 @@
 // src/app/page.tsx
 
-"use client";
+"use client"; // これは既にファイルの先頭にあるはずです
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect } from "react"; // useEffectを追加
 import { createHtmlPortalNode, InPortal, OutPortal } from 'react-reverse-portal';
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
 import ContactForm from "../components/ContactForm";
 import Image from "next/image";
 
-import { Project, projects } from "../data/projects"; // コメントアウトは解除されていますね。
+import { Project, projects } from "../data/projects";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navbarPortalNode = useMemo(() => createHtmlPortalNode(), []);
+
+  // ★★★ 重要な修正点ここから ★★★
+  // navbarPortalNode を null で初期化。クライアントサイドでのみ設定されるようにします。
+  const [navbarPortalNode, setNavbarPortalNode] = useState<any>(null); 
   const fixedNavbarRef = useRef<HTMLDivElement>(null);
   const [navbarHeight, setNavbarHeight] = useState(0);
 
   useEffect(() => {
+    // このコードは、'window' と 'document' が存在するブラウザでのみ実行されます。
+    // useEffect自体がクライアントサイドでの実行を意味しますが、念のためtypeof window !== 'undefined'で安全性を高めています。
+    if (typeof window !== 'undefined' && !navbarPortalNode) {
+      setNavbarPortalNode(createHtmlPortalNode());
+    }
+
     const updateNavbarHeight = () => {
       if (fixedNavbarRef.current) {
         setNavbarHeight(fixedNavbarRef.current.offsetHeight);
@@ -30,10 +39,18 @@ export default function Home() {
     return () => {
       window.removeEventListener("resize", updateNavbarHeight);
     };
-  }, []);
+  }, [navbarPortalNode]); // navbarPortalNode がセットされたら（最初の1回だけ）再実行しないように依存配列に追加
+
+  // navbarPortalNode がまだ初期化されていない場合（サーバー上またはクライアントでuseEffectが実行される前）は、
+  // それに依存するコンテンツをレンダリングしないようにします。代わりにローディングスピナーなどを返すこともできます。
+  if (!navbarPortalNode) {
+    return null; // または <LoadingSpinner />
+  }
+  // ★★★ 重要な修正点ここまで ★★★
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Portal の使用箇所は変更なし */}
       <InPortal node={navbarPortalNode}>
         <Navbar onContactClick={() => setIsModalOpen(true)} />
       </InPortal>
@@ -49,6 +66,8 @@ export default function Home() {
         className={`flex-grow container mx-auto p-4 sm:p-8`}
         style={{ paddingTop: `${navbarHeight}px` }}
       >
+        {/* ... 以降のコンテンツは変更なし ... */}
+
         {/* About Me Section */}
         <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">
@@ -103,38 +122,32 @@ export default function Home() {
           id="projects"
           className="bg-white p-6 mb-8 rounded-lg shadow-md"
         >
-          {/* ここが重要！<h2>Projects</h2> タグが1つだけになるように確認してください。 */}
-          {/* 以前の差分にあったコメント「ここだけ残してください。重複していた <h2 ...>Projects の行を削除します。」は、コードのコメントとしてではなく、元のコードから重複行を削除することを示しています。 */}
-          {/* 以下のh2タグが正しく閉じられていることを確認してください。 */}
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-blue-600 pb-2">
             Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project: Project) => (
+            {projects.map((project: Project) => ( // Project型を明示的に指定
               <div key={project.id} className="project-card border border-gray-200 p-6 rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition-shadow duration-300 flex flex-col">
                 {/* プロジェクト画像 */}
                 {project.image && (
                   <div className="mb-4">
-                    <Image // ★変更点: `img` を `Image` に変更
+                    <Image
                       src={project.image}
                       alt={`${project.title} のスクリーンショット`}
                       className="w-full h-48 object-cover rounded-md border border-gray-200"
-                      width={700} // ★追加: 適切な幅を設定 (例: 700)。画像のアスペクト比に合わせて調整してください
-                      height={300} // ★追加: 適切な高さを設定 (例: 300)。`h-48` のCSSクラスに合わせて調整してください (12rem = 192px)
+                      width={700}
+                      height={300}
                     />
                   </div>
                 )}
-
                 {/* プロジェクトタイトル */}
                 <h3 className="text-2xl font-bold mb-2 text-blue-800">
                   {project.title}
                 </h3>
-
                 {/* 説明 */}
                 <p className="text-gray-700 mb-4 flex-grow">
                   {project.description}
                 </p>
-
                 {/* 使用技術 */}
                 {project.technologies.length > 0 && (
                   <div className="mb-4">
@@ -151,7 +164,6 @@ export default function Home() {
                     </div>
                   </div>
                 )}
-
                 {/* 工夫した点/ポイント */}
                 {project.points.length > 0 && (
                   <div className="mb-4">
@@ -163,7 +175,6 @@ export default function Home() {
                     </ul>
                   </div>
                 )}
-
                 {/* リンクボタン */}
                 <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-gray-200">
                   {project.demoLink && (
