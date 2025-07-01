@@ -2,7 +2,7 @@
 
 "use client"; // これは既にファイルの先頭にあるはずです
 
-import { useState, useMemo, useRef, useEffect } from "react"; // useEffectを追加
+import { useState, useRef, useEffect } from "react"; // useMemo を削除しました
 import { createHtmlPortalNode, InPortal, OutPortal } from 'react-reverse-portal';
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
@@ -16,7 +16,7 @@ export default function Home() {
 
   // ★★★ 重要な修正点ここから ★★★
   // navbarPortalNode を null で初期化。クライアントサイドでのみ設定されるようにします。
-  const [navbarPortalNode, setNavbarPortalNode] = useState<any>(null); 
+  const [navbarPortalNode, setNavbarPortalNode] = useState(null); // <any> を削除しました
   const fixedNavbarRef = useRef<HTMLDivElement>(null);
   const [navbarHeight, setNavbarHeight] = useState(0);
 
