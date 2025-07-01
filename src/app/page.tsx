@@ -110,7 +110,7 @@ export default function Home() {
             Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
+            {projects.map((project: Project) => (
               <div key={project.id} className="project-card border border-gray-200 p-6 rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition-shadow duration-300 flex flex-col">
                 {/* プロジェクト画像 */}
                 {project.image && (
