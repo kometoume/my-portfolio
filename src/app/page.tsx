@@ -109,7 +109,7 @@ export default function Home() {
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 WordPress
                 <span className="ml-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-full">
-                  2年 
+                  1年 
                 </span>
               </li>
             </ul>
@@ -150,7 +150,7 @@ export default function Home() {
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Adobe Premiere Pro
                 <span className="ml-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-full">
-                  2年
+                  1年
                 </span>
               </li>
             </ul>
