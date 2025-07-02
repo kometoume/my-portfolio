@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "八木美智惠｜Webコーダー／フロントエンドエンジニア志望 ポートフォリオ",
-  description: "HTML/CSS/JavaScriptを中心にWebサイトを構築してきたWebコーダー。現在はReactやNext.jsを用いた開発にも携わり、フロントエンドエンジニアを目指しています。八木美智惠のポートフォリオサイトです。",
+  description: "八木美智惠のポートフォリオサイトです。HTML/CSS/JavaScriptを中心にWebサイトを構築してきました。現在はReactやNext.jsを用いた開発にも携わり、フロントエンドエンジニアを目指しています。",
 };
 
 export default function RootLayout({
