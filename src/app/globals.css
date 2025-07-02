@@ -34,6 +34,6 @@ section[id] {
 /* スマートフォンなどの小さい画面幅にのみ適用 */
 @media (max-width: 768px) { /* Tailwind CSSのデフォルトのmdブレイクポイント(768px)を例にしています */
   section[id] {
-    scroll-margin-top: 200px; /* モバイルでのナビゲーションバーの高さに合わせて調整！ */
+    scroll-margin-top: 100px; /* モバイルでのナビゲーションバーの高さに合わせて調整！ */
   }
 }

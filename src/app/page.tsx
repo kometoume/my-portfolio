@@ -1,8 +1,8 @@
 // src/app/page.tsx
 
-'use client'; // これは既にファイルの先頭にあるはずです
+'use client';
 
-import { useState, useRef, useEffect } from 'react'; // useMemo を削除しました
+import { useState, useRef, useEffect } from 'react';
 import { createHtmlPortalNode, InPortal, OutPortal } from 'react-reverse-portal';
 import Navbar from '../components/Navbar';
 import Modal from '../components/Modal';
@@ -14,54 +14,80 @@ import { Project, projects } from '../data/projects';
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // ★★★ 重要な修正点ここから ★★★
-  // navbarPortalNode を null で初期化。クライアントサイドでのみ設定されるようにします。
   const [navbarPortalNode, setNavbarPortalNode] = useState<ReturnType<typeof createHtmlPortalNode> | null>(null);
-  const fixedNavbarRef = useRef<HTMLDivElement>(null);
-  const [navbarHeight, setNavbarHeight] = useState(0);
+  // refの役割が変わるので名前を変更（NavbarのPC版nav要素の高さを取得する目的）
+  const pcNavbarRef = useRef<HTMLElement>(null); // nav要素を参照するため HTMLElement に変更
+  const [pcNavbarHeight, setPcNavbarHeight] = useState(0); // PC用ナビゲーションの高さを保持
+
+  // モバイルヘッダーの高さは固定値で定義（Navbar.tsxと合わせる）
+  const mobileHeaderHeight = '82px'; // ロゴ(50px) + p-4(16px*2) = 82px
 
   useEffect(() => {
-    // このコードは、'window' と 'document' が存在するブラウザでのみ実行されます。
-    // useEffect自体がクライアントサイドでの実行を意味しますが、念のためtypeof window !== 'undefined'で安全性を高めています。
     if (typeof window !== 'undefined' && !navbarPortalNode) {
       setNavbarPortalNode(createHtmlPortalNode());
     }
 
-    const updateNavbarHeight = () => {
-      if (fixedNavbarRef.current) {
-        setNavbarHeight(fixedNavbarRef.current.offsetHeight);
+    const updatePcNavbarHeight = () => {
+      // PC用の固定ナビゲーションの高さ（scrolled時）を取得
+      // Navbarコンポーネント内の.bg-gray-600 nav要素を見つける
+      if (navbarPortalNode && navbarPortalNode.current) {
+        // PortalでレンダリングされたNavbarのDOM要素を取得
+        const navbarDom = navbarPortalNode.current;
+        // PC用のナビゲーション要素をクエリセレクタで探す
+        const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed'); // fixedがついている状態の要素を探す
+
+        if (pcNavElement) {
+          setPcNavbarHeight(pcNavElement.offsetHeight);
+        } else {
+          // fixedがまだ適用されていない（スクロールしていない）場合は、relativeのnavの高さを取得
+          const relativePcNavElement = navbarDom.querySelector('nav.bg-gray-600.relative');
+          if (relativePcNavElement) {
+            setPcNavbarHeight(relativePcNavElement.offsetHeight);
+          }
+        }
       }
     };
 
-    updateNavbarHeight();
-    window.addEventListener('resize', updateNavbarHeight);
+    updatePcNavbarHeight();
+    window.addEventListener('resize', updatePcNavbarHeight);
+    window.addEventListener('scroll', updatePcNavbarHeight); // スクロール時にも高さを更新
 
     return () => {
-      window.removeEventListener('resize', updateNavbarHeight);
+      window.removeEventListener('resize', updatePcNavbarHeight);
+      window.removeEventListener('scroll', updatePcNavbarHeight);
     };
-  }, [navbarPortalNode]); // navbarPortalNode がセットされたら（最初の1回だけ）再実行しないように依存配列に追加
+  }, [navbarPortalNode]);
 
-  // navbarPortalNode がまだ初期化されていない場合（サーバー上またはクライアントでuseEffectが実行される前）は、
-  // それに依存するコンテンツをレンダリングしないようにします。代わりにローディングスピナーなどを返すこともできます。
+
   if (!navbarPortalNode) {
-    return null; // または <LoadingSpinner />
+    return null;
   }
-  // ★★★ 重要な修正点ここまで ★★★
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Portal の使用箇所は変更なし */}
+      {/* NavbarコンポーネントをInPortalでレンダリング */}
       <InPortal node={navbarPortalNode}>
         <Navbar onContactClick={() => setIsModalOpen(true)} />
       </InPortal>
 
-      <div ref={fixedNavbarRef} className="fixed top-0 left-0 w-full z-50">
-        <OutPortal node={navbarPortalNode} />
-      </div>
+      {/* NavbarコンポーネントのOutPortal */}
+      {/* OutPortalはそのまま配置し、Navbar自身がfixedを制御するようにする */}
+      <OutPortal node={navbarPortalNode} />
 
-      <main className={`flex-grow container mx-auto p-4 sm:p-8`} style={{ paddingTop: `${navbarHeight}px` }}>
+      {/* コンテンツのpadding-topは、PCとモバイルで出し分ける */}
+      <main className={`flex-grow container mx-auto p-4 sm:p-8
+        md:pt-[${pcNavbarHeight}px]`} // PC表示時
+        style={{
+          // モバイル表示時のみ padding-top を設定
+          paddingTop: `calc(${mobileHeaderHeight} + 1rem)`, // モバイルヘッダーの高さ + p-4の高さ（適宜調整）
+        }}
+        // media query for mobile in style attribute doesn't work. Use utility class or global css.
+        // For simplicity and direct control, let's adjust padding-top dynamically
+        // Or better, handle the padding with utility classes for md: and other breakpoints
+        // The md:pt-[...]px will only apply when md breakpoint is met.
+        // For mobile, apply a default or calculated padding.
+        >
         {/* ... 以降のコンテンツは変更なし ... */}
-
         {/* About Me Section */}
         <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">About Me</h2>
@@ -109,7 +135,7 @@ export default function Home() {
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 WordPress
                 <span className="ml-2 px-2 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-full">
-                  1年 
+                  1年
                 </span>
               </li>
             </ul>
