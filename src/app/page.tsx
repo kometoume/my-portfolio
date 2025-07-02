@@ -3,7 +3,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// HtmlPortalNode 型をインポートに追加
 import { createHtmlPortalNode, InPortal, OutPortal, HtmlPortalNode } from 'react-reverse-portal';
 import Navbar from '../components/Navbar';
 import Modal from '../components/Modal';
@@ -15,7 +14,6 @@ import { Project, projects } from '../data/projects';
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // useStateの型を HtmlPortalNode | null に修正
   const [navbarPortalNode, setNavbarPortalNode] = useState<HtmlPortalNode | null>(null);
   const [pcNavbarHeight, setPcNavbarHeight] = useState(0);
 
@@ -28,15 +26,17 @@ export default function Home() {
     }
 
     const updatePcNavbarHeight = () => {
-      // ここを修正: navbarPortalNode.current ではなく navbarPortalNode.element を使用
-      if (navbarPortalNode && navbarPortalNode.element) { // .element でDOM要素にアクセス
-        const navbarDom = navbarPortalNode.element; // これが実際のDOM要素
-        const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed');
+      if (navbarPortalNode && navbarPortalNode.element) {
+        const navbarDom = navbarPortalNode.element;
+
+        // ここを修正: pcNavElement が HTMLElement であることをTypeScriptに伝えます
+        const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed') as HTMLElement;
 
         if (pcNavElement) {
           setPcNavbarHeight(pcNavElement.offsetHeight);
         } else {
-          const relativePcNavElement = navbarDom.querySelector('nav.bg-gray-600.relative');
+          // ここも修正: relativePcNavElement が HTMLElement であることをTypeScriptに伝えます
+          const relativePcNavElement = navbarDom.querySelector('nav.bg-gray-600.relative') as HTMLElement;
           if (relativePcNavElement) {
             setPcNavbarHeight(relativePcNavElement.offsetHeight);
           }
@@ -75,7 +75,7 @@ export default function Home() {
             : `calc(${mobileHeaderHeight} + 1rem)`
         }}
       >
-        {/* ... 以降のコンテンツは変更なし ... */}
+        {/* ... (残りのコンテンツは変更なし) ... */}
         <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">About Me</h2>
           <p className="text-lg mb-4 text-gray-900">
