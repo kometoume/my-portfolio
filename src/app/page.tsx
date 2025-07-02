@@ -15,12 +15,11 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [navbarPortalNode, setNavbarPortalNode] = useState<ReturnType<typeof createHtmlPortalNode> | null>(null);
-  // refの役割が変わるので名前を変更（NavbarのPC版nav要素の高さを取得する目的）
-  const pcNavbarRef = useRef<HTMLElement>(null); // nav要素を参照するため HTMLElement に変更
   const [pcNavbarHeight, setPcNavbarHeight] = useState(0); // PC用ナビゲーションの高さを保持
 
   // モバイルヘッダーの高さは固定値で定義（Navbar.tsxと合わせる）
-  const mobileHeaderHeight = '82px'; // ロゴ(50px) + p-4(16px*2) = 82px
+  const mobileHeaderHeightValue = 82; // pxを省いて数値として定義
+  const mobileHeaderHeight = `${mobileHeaderHeightValue}px`; // 文字列として保持
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !navbarPortalNode) {
@@ -28,18 +27,13 @@ export default function Home() {
     }
 
     const updatePcNavbarHeight = () => {
-      // PC用の固定ナビゲーションの高さ（scrolled時）を取得
-      // Navbarコンポーネント内の.bg-gray-600 nav要素を見つける
       if (navbarPortalNode && navbarPortalNode.current) {
-        // PortalでレンダリングされたNavbarのDOM要素を取得
         const navbarDom = navbarPortalNode.current;
-        // PC用のナビゲーション要素をクエリセレクタで探す
-        const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed'); // fixedがついている状態の要素を探す
+        const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed');
 
         if (pcNavElement) {
           setPcNavbarHeight(pcNavElement.offsetHeight);
         } else {
-          // fixedがまだ適用されていない（スクロールしていない）場合は、relativeのnavの高さを取得
           const relativePcNavElement = navbarDom.querySelector('nav.bg-gray-600.relative');
           if (relativePcNavElement) {
             setPcNavbarHeight(relativePcNavElement.offsetHeight);
@@ -50,7 +44,7 @@ export default function Home() {
 
     updatePcNavbarHeight();
     window.addEventListener('resize', updatePcNavbarHeight);
-    window.addEventListener('scroll', updatePcNavbarHeight); // スクロール時にも高さを更新
+    window.addEventListener('scroll', updatePcNavbarHeight);
 
     return () => {
       window.removeEventListener('resize', updatePcNavbarHeight);
@@ -65,28 +59,22 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* NavbarコンポーネントをInPortalでレンダリング */}
       <InPortal node={navbarPortalNode}>
         <Navbar onContactClick={() => setIsModalOpen(true)} />
       </InPortal>
 
-      {/* NavbarコンポーネントのOutPortal */}
-      {/* OutPortalはそのまま配置し、Navbar自身がfixedを制御するようにする */}
       <OutPortal node={navbarPortalNode} />
 
-      {/* コンテンツのpadding-topは、PCとモバイルで出し分ける */}
-      <main className={`flex-grow container mx-auto p-4 sm:p-8
-        md:pt-[${pcNavbarHeight}px]`} // PC表示時
+      <main
+        className={`flex-grow container mx-auto p-4 sm:p-8`}
         style={{
-          // モバイル表示時のみ padding-top を設定
-          paddingTop: `calc(${mobileHeaderHeight} + 1rem)`, // モバイルヘッダーの高さ + p-4の高さ（適宜調整）
+          // PC (md以上) とモバイルで padding-top を出し分ける
+          // window.innerWidth を使って動的にスタイルを適用
+          paddingTop: typeof window !== 'undefined' && window.innerWidth >= 768 // mdブレークポイント (768px)
+            ? `${pcNavbarHeight}px` // PC表示時
+            : `calc(${mobileHeaderHeight} + 1rem)` // モバイル表示時
         }}
-        // media query for mobile in style attribute doesn't work. Use utility class or global css.
-        // For simplicity and direct control, let's adjust padding-top dynamically
-        // Or better, handle the padding with utility classes for md: and other breakpoints
-        // The md:pt-[...]px will only apply when md breakpoint is met.
-        // For mobile, apply a default or calculated padding.
-        >
+      >
         {/* ... 以降のコンテンツは変更なし ... */}
         {/* About Me Section */}
         <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
@@ -201,7 +189,7 @@ export default function Home() {
                       <Image
                         src={project.image}
                         alt={`${project.title} のスクリーンショット`}
-                        className="w-full aspect-[700/300] object-contain rounded-md border border-gray-200" // この行を追加/変更
+                        className="w-full aspect-[700/300] object-contain rounded-md border border-gray-200"
                         width={700}
                         height={300}
                       />
