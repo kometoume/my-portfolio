@@ -3,7 +3,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createHtmlPortalNode, InPortal, OutPortal } from 'react-reverse-portal';
+// HtmlPortalNode 型をインポートに追加
+import { createHtmlPortalNode, InPortal, OutPortal, HtmlPortalNode } from 'react-reverse-portal';
 import Navbar from '../components/Navbar';
 import Modal from '../components/Modal';
 import ContactForm from '../components/ContactForm';
@@ -14,12 +15,12 @@ import { Project, projects } from '../data/projects';
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [navbarPortalNode, setNavbarPortalNode] = useState<ReturnType<typeof createHtmlPortalNode> | null>(null);
-  const [pcNavbarHeight, setPcNavbarHeight] = useState(0); // PC用ナビゲーションの高さを保持
+  // useStateの型を HtmlPortalNode | null に修正
+  const [navbarPortalNode, setNavbarPortalNode] = useState<HtmlPortalNode | null>(null);
+  const [pcNavbarHeight, setPcNavbarHeight] = useState(0);
 
-  // モバイルヘッダーの高さは固定値で定義（Navbar.tsxと合わせる）
-  const mobileHeaderHeightValue = 82; // pxを省いて数値として定義
-  const mobileHeaderHeight = `${mobileHeaderHeightValue}px`; // 文字列として保持
+  const mobileHeaderHeightValue = 82;
+  const mobileHeaderHeight = `${mobileHeaderHeightValue}px`;
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !navbarPortalNode) {
@@ -27,8 +28,9 @@ export default function Home() {
     }
 
     const updatePcNavbarHeight = () => {
-      if (navbarPortalNode && navbarPortalNode.current) {
-        const navbarDom = navbarPortalNode.current;
+      // ここを修正: navbarPortalNode.current ではなく navbarPortalNode.element を使用
+      if (navbarPortalNode && navbarPortalNode.element) { // .element でDOM要素にアクセス
+        const navbarDom = navbarPortalNode.element; // これが実際のDOM要素
         const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed');
 
         if (pcNavElement) {
@@ -68,15 +70,12 @@ export default function Home() {
       <main
         className={`flex-grow container mx-auto p-4 sm:p-8`}
         style={{
-          // PC (md以上) とモバイルで padding-top を出し分ける
-          // window.innerWidth を使って動的にスタイルを適用
-          paddingTop: typeof window !== 'undefined' && window.innerWidth >= 768 // mdブレークポイント (768px)
-            ? `${pcNavbarHeight}px` // PC表示時
-            : `calc(${mobileHeaderHeight} + 1rem)` // モバイル表示時
+          paddingTop: typeof window !== 'undefined' && window.innerWidth >= 768
+            ? `${pcNavbarHeight}px`
+            : `calc(${mobileHeaderHeight} + 1rem)`
         }}
       >
         {/* ... 以降のコンテンツは変更なし ... */}
-        {/* About Me Section */}
         <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">About Me</h2>
           <p className="text-lg mb-4 text-gray-900">
@@ -87,7 +86,6 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Skills Section */}
         <section id="skills" className="bg-white p-6 mb-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">Skills</h2>
           <div className="mb-6">
@@ -171,19 +169,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section id="projects" className="bg-white p-6 mb-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map(
               (
-                project: Project, // Project型を明示的に指定
+                project: Project,
               ) => (
                 <div
                   key={project.id}
                   className="project-card border border-gray-200 p-6 rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition-shadow duration-300 flex flex-col"
                 >
-                  {/* プロジェクト画像 */}
                   {project.image && (
                     <div className="mb-4">
                       <Image
@@ -195,11 +191,8 @@ export default function Home() {
                       />
                     </div>
                   )}
-                  {/* プロジェクトタイトル */}
                   <h3 className="text-2xl font-bold mb-2 text-gray-800">{project.title}</h3>
-                  {/* 説明 */}
                   <p className="text-gray-800 mb-4">{project.description}</p>
-                  {/* 使用技術 */}
                   {project.technologies.length > 0 && (
                     <div className="mb-4">
                       <h4 className="text-lg font-semibold mb-2 text-gray-800">使用技術:</h4>
@@ -215,7 +208,6 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  {/* 工夫した点/ポイント */}
                   {project.points.length > 0 && (
                     <div className="mb-4">
                       <h4 className="text-lg font-semibold mb-2 text-gray-800">ポイント:</h4>
@@ -228,7 +220,6 @@ export default function Home() {
                       </ul>
                     </div>
                   )}
-                  {/* リンクボタン */}
                   <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-gray-200">
                     {project.demoLink && (
                       <a
@@ -247,7 +238,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* お問い合わせボタン */}
         <section className="text-center mt-8">
           <button
             onClick={() => setIsModalOpen(true)}
@@ -258,12 +248,10 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="w-full p-4 bg-gray-800 text-white text-center mt-8">
         <p>&copy; {new Date().getFullYear()} MichieYagi Portfolio. All rights reserved.</p>
       </footer>
 
-      {/* Contact Modal */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ContactForm />
       </Modal>
