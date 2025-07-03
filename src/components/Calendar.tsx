@@ -1,8 +1,8 @@
 // src/components/Calendar.tsx
-'use client'; // クライアントサイドで動作することを明示
+'use client';
 
-import React, { useState, useCallback } from 'react';
-import '../app/calendar/Calendar.css'; // <-- この行を修正します！
+import React, { useState, useCallback, useEffect } from 'react'; // useEffect を再度インポートします
+import '../app/calendar/Calendar.css'; // カレンダー専用のCSSファイルを読み込みます
 
 const Calendar: React.FC = () => {
   // `currentDate`は、"Today"ボタンで今日に戻る時のみ使われる日付オブジェクト
@@ -10,6 +10,39 @@ const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date()); // 初期の今日の日付を保持
   const [year, setYear] = useState(currentDate.getFullYear());
   const [month, setMonth] = useState(currentDate.getMonth());
+
+  // --- ここから追加・変更する部分 ---
+
+  // カレンダーが最初にレンダリングされたとき、または年/月が変更されたときに
+  // `currentDate`を最新の状態に保つためのuseEffect
+  useEffect(() => {
+    // ページロード時や月移動時に、表示しているカレンダーの「今日」を正しく設定するため
+    // ここで`currentDate`を更新すると、`getCalendarBody`の再計算がトリガーされます。
+    setCurrentDate(new Date());
+
+    // 次の日の午前0時までのミリ秒を計算し、タイマーを設定
+    const now = new Date();
+    const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const timeUntilNextDay = nextDay.getTime() - now.getTime();
+
+    // 次の日の午前0時にカレンダーを更新するためのタイマーを設定
+    const timerId = setTimeout(() => {
+      // 日付が変わったら、年と月を今日の情報にリセットし、currentDateも更新して再レンダリングをトリガー
+      const today = new Date();
+      setYear(today.getFullYear());
+      setMonth(today.getMonth());
+      setCurrentDate(today);
+      // さらに、翌日以降も自動更新されるように、再度タイマーを設定 (再帰的に呼び出すことで継続)
+      // これをしないと、一度更新したら終わりになってしまう
+      // この useEffect が再実行されることで新しい setTimeout が設定されます
+    }, timeUntilNextDay);
+
+    // コンポーネントがアンマウントされるときにタイマーをクリア
+    return () => clearTimeout(timerId);
+  }, [year, month]); // year, month が変わったときにもタイマーを再設定
+
+  // --- ここまで追加・変更する部分 ---
+
 
   // 月のタイトルをフォーマット (例: 2025/07)
   const renderTitle = useCallback(() => {
