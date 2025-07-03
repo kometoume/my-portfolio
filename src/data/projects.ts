@@ -94,7 +94,7 @@ export const projects: Project[] = [
   demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/calendar', // あなたのポートフォリオサイト内のカレンダーアプリのURLに置き換えてください
   points: [
     '既存のJavaScript/HTML/CSSコードをReactコンポーネントへ移植',
-    '日付計算ロジック（月初め/月末の曜日、前月/次月の日付埋めなど）の実装',
+    '日付計算ロジックの実装',
   ],
 },
   // 必要に応じてプロジェクトを追加
