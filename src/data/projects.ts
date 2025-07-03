@@ -80,10 +80,8 @@ export const projects: Project[] = [
   technologies: ['React', 'Next.js', 'Tailwind CSS', 'JavaScript'],
   demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/todos', // Vercelなどで公開したURLに置き換えてください
   points: [
-    '自主制作**プロジェクト',
     'ローカルストレージを用いたデータ永続化',
     'Tailwind CSSによる効率的なスタイリング',
-    'アクセシビリティ考慮（ポインター表示）', // 追加でアピールしたい点があれば
   ],
 },
   // 必要に応じてプロジェクトを追加
