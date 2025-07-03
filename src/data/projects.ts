@@ -84,5 +84,18 @@ export const projects: Project[] = [
     'Tailwind CSSによる効率的なスタイリング',
   ],
 },
+{
+  id: 'calendar-app', // ユニークなIDを設定 (例: 'calendar-app' など)
+  title: 'インタラクティブカレンダー (自主制作)',
+  description:
+    'JavaScript、HTML、CSSで基礎を構築し、React/Next.js環境へ移行したインタラクティブなカレンダーアプリです。現在の月日の表示、前後月への移動、そして今日の表示機能を提供します。',
+  image: '/images/calendar-app-thumbnail.png', // あなたのカレンダーアプリのスクリーンショット画像パスに置き換えてください
+  technologies: ['React', 'Next.js', 'JavaScript', 'HTML', 'CSS'],
+  demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/calendar', // あなたのポートフォリオサイト内のカレンダーアプリのURLに置き換えてください
+  points: [
+    '既存のJavaScript/HTML/CSSコードをReactコンポーネントへ移植',
+    '日付計算ロジック（月初め/月末の曜日、前月/次月の日付埋めなど）の実装',
+  ],
+},
   // 必要に応じてプロジェクトを追加
 ];

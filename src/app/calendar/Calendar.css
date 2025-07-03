@@ -1,0 +1,58 @@
+/* src/components/Calendar.css */
+
+.calendar-container {
+  display: flex;
+  justify-content: center; /* 中央寄せ */
+  padding: 20px; /* 余白 */
+}
+
+.calendar-container body { /* bodyに対するスタイルはここでは不要 */
+  /* font-family: 'Courier New', monospace; */
+  /* font-size: 14px; */
+}
+
+.calendar-container table {
+  border-collapse: collapse;
+  border: 2px solid #eee;
+  width: 100%; /* 親要素に合わせて幅を調整 */
+  max-width: 400px; /* 最大幅を設定して見やすくする */
+}
+
+.calendar-container thead,
+.calendar-container tfoot {
+  background: #eee;
+}
+
+.calendar-container th,
+.calendar-container td {
+  padding: 8px;
+  text-align: center;
+}
+
+.calendar-container tbody td:first-child {
+  color: red;
+}
+
+.calendar-container tbody td:last-child {
+  color: blue;
+}
+
+.calendar-container tfoot {
+  font-weight: bold;
+}
+
+.calendar-container td.disabled {
+  opacity: 0.3;
+}
+
+.calendar-container td.today {
+  font-weight: bold;
+  background-color: #d1e7dd; /* 今日の日付を強調する色 */
+}
+
+.calendar-container #prev,
+.calendar-container #next,
+.calendar-container #today {
+  cursor: pointer;
+  user-select: none;
+}
