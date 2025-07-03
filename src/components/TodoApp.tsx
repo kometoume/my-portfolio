@@ -67,7 +67,7 @@ const TodoApp: React.FC = () => {
 
   return (
     <div className="container mx-auto p-6 max-w-md bg-white rounded-xl shadow-lg mt-8">
-      <h1 className="text-3xl font-extrabold border-b-2 border-gray-200 pb-3 mb-6 flex justify-between items-center text-gray-800">
+      <h1 className="text-2xl font-extrabold border-b-2 border-gray-200 pb-3 mb-6 flex justify-between items-center text-gray-800">
         タスク一覧
         <button
           onClick={purgeCompletedTodos}
