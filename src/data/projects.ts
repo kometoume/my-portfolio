@@ -78,14 +78,12 @@ export const projects: Project[] = [
   image: '/images/todo-app-thumbnail.png', // このアプリのスクリーンショット画像パスに置き換えてください
   // 例: publicフォルダ内に画像を保存する場合 /images/todo-app-thumbnail.png
   technologies: ['React', 'Next.js', 'Tailwind CSS', 'JavaScript'],
-  demoLink: 'あなたのTodoアプリのデプロイURL', // Vercelなどで公開したURLに置き換えてください
+  demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/todos', // Vercelなどで公開したURLに置き換えてください
   points: [
-    '**自主制作**プロジェクト',
-    'コンポーネント指向による開発',
+    '自主制作**プロジェクト',
     'ローカルストレージを用いたデータ永続化',
     'Tailwind CSSによる効率的なスタイリング',
-    'UI/UXに配慮したデザインとインタラクション',
-    'アクセシビリティ考慮（キーボード操作対応、ポインター表示など）', // 追加でアピールしたい点があれば
+    'アクセシビリティ考慮（ポインター表示）', // 追加でアピールしたい点があれば
   ],
 },
   // 必要に応じてプロジェクトを追加
