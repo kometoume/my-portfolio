@@ -2,8 +2,8 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
-// 以下のCSSファイルのインポートは、この単一ファイル環境ではパス解決エラーとなるためコメントアウトしています。
-// 実際のNext.jsプロジェクトなどでは、この行を有効にするか、グローバルCSSに統合してください。
+// 以下のCSSファイルのインポートは、このCanvas環境ではパス解決エラーとなるためコメントアウトしています。
+// 実際のNext.jsプロジェクトなどでは、この行を有効にしてCSSファイルをインポートしてください。
 // import '../app/calendar/Calendar.css';
 
 const Calendar: React.FC = () => {
@@ -31,7 +31,7 @@ const Calendar: React.FC = () => {
         setYear(today.getFullYear());
         setMonth(today.getMonth());
         setCurrentDate(today);
-        // 次の日の午前0時にも再度タイマーを設定するために、自身を再帰的に呼び出します。
+        // さらに、翌日以降も自動更新されるように、再度タイマーを設定 (再帰的に呼び出すことで継続)
         setMidnightTimer();
       }, timeUntilNextDay);
 
@@ -49,7 +49,7 @@ const Calendar: React.FC = () => {
 
     // コンポーネントがアンマウントされるときにタイマーをクリアします。
     return () => clearTimeout(initialTimerId);
-  }, []); // 空の依存配列により、このuseEffectはマウント時に一度だけ実行されます。
+  }, []); // ここを空の依存配列に変更することで、マウント時に一度だけ実行されるようになります。
 
   // 月のタイトルをフォーマット (例: 2025/07)
   const renderTitle = useCallback(() => {
@@ -86,7 +86,7 @@ const Calendar: React.FC = () => {
     }
 
     // 今日の日付をハイライト
-    // `currentDate` が更新された際に再評価されるように依存配列に追加
+    // `currentDate` を依存配列に入れることで、`goToToday` で `currentDate` が更新された際に再評価される
     if (year === currentDate.getFullYear() && month === currentDate.getMonth()) {
       dates[currentDate.getDate() - 1].isToday = true;
     }
@@ -155,9 +155,7 @@ const Calendar: React.FC = () => {
       <table>
         <thead>
           <tr>
-            <th id="prev" onClick={goToPrevMonth}>&laquo;</th>
-            <th id="title" colSpan={5}>{renderTitle()}</th>
-            <th id="next" onClick={goToNextMonth}>&raquo;</th>
+            <th id="prev" onClick={goToPrevMonth}>&laquo;</th><th id="title" colSpan={5}>{renderTitle()}</th><th id="next" onClick={goToNextMonth}>&raquo;</th>
           </tr>
           <tr>
             <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
@@ -165,7 +163,7 @@ const Calendar: React.FC = () => {
         </thead>
         <tbody>
           {weeks.map((week, weekIndex) => (
-            <tr key={weekIndex}>
+            <tr key={weekIndex}>{/* 各週の行 */}
               {week.map((dateInfo, dateIndex) => (
                 <td
                   key={dateIndex}

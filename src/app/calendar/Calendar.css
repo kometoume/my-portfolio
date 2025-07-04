@@ -1,58 +1,146 @@
-/* src/components/Calendar.css */
+/* src/app/calendar/Calendar.css - 修正版 */
 
+/* カレンダー全体のコンテナ */
 .calendar-container {
   display: flex;
   justify-content: center; /* 中央寄せ */
+  align-items: center; /* 垂直方向も中央寄せ */
+  min-height: 100vh; /* 画面全体に広がるように */
+
+  font-family: 'Inter', sans-serif; /* フォントの指定 */
   padding: 20px; /* 余白 */
+  box-sizing: border-box; /* パディングを幅に含める */
 }
 
-.calendar-container body { /* bodyに対するスタイルはここでは不要 */
-  /* font-family: 'Courier New', monospace; */
-  /* font-size: 14px; */
-}
+/* bodyに対するスタイルは、通常グローバルCSSファイルで定義するか、
+   ここでは不要なため削除しました。 */
 
+/* カレンダーテーブル */
 .calendar-container table {
-  border-collapse: collapse;
-  border: 2px solid #eee;
+  border-collapse: collapse; /* セルの境界線を結合 */
   width: 100%; /* 親要素に合わせて幅を調整 */
-  max-width: 400px; /* 最大幅を設定して見やすくする */
+  max-width: 600px; /* 最大幅を設定して見やすくする */
+  background-color: #ffffff; /* テーブルの背景色 */
+  border-radius: 12px; /* 角を丸くする */
+  overflow: hidden; /* 角丸を適用するために必要 */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* 影を追加 */
 }
 
+/* テーブルヘッダーとフッターの背景色 */
 .calendar-container thead,
 .calendar-container tfoot {
-  background: #eee;
+  background: #4a90e2; /* ヘッダーとフッターの背景色 */
+  color: #ffffff; /* 文字色 */
+  font-weight: 600;
 }
 
+/* ヘッダーとセルのパディングとテキスト配置 */
 .calendar-container th,
 .calendar-container td {
-  padding: 8px;
+  padding: 15px 10px; /* パディングを増やす */
   text-align: center;
+  border: 1px solid #e0e0e0; /* 軽い境界線 */
+  transition: background-color 0.3s ease; /* ホバーエフェクト用 */
 }
 
+/* 曜日の行のスタイル */
+.calendar-container thead tr:last-child th {
+  background-color: #3a7bd5; /* 曜日の行の背景色 */
+  font-size: 1em;
+  padding: 10px;
+}
+
+/* 日曜日の文字色 */
 .calendar-container tbody td:first-child {
-  color: red;
+  color: #e74c3c; /* 赤色 */
 }
 
+/* 土曜日の文字色 */
 .calendar-container tbody td:last-child {
-  color: blue;
+  color: #3498db; /* 青色 */
 }
 
+/* フッターのスタイル */
 .calendar-container tfoot {
   font-weight: bold;
 }
 
+/* 無効な日付のスタイル */
 .calendar-container td.disabled {
-  opacity: 0.3;
+  opacity: 0.4; /* 透明度を下げて無効であることを示す */
+  background-color: #f8f8f8; /* 無効な日付の背景色 */
+  color: #b0b0b0; /* 無効な日付の文字色 */
 }
 
+/* 今日の日付のスタイル */
 .calendar-container td.today {
   font-weight: bold;
-  background-color: #d1e7dd; /* 今日の日付を強調する色 */
+  background-color: #ffe082; /* 今日の日付を強調する色 */
+  color: #d35400; /* 今日の日付の文字色 */
+  border-radius: 8px; /* 今日の日付のセルも角丸に */
+  position: relative;
+  z-index: 1; /* 他のセルより前面に */
 }
 
+/* 前の月、次の月、今日のボタンのスタイル */
 .calendar-container #prev,
 .calendar-container #next,
 .calendar-container #today {
   cursor: pointer;
-  user-select: none;
+  user-select: none; /* テキスト選択を無効にする */
+}
+
+/* ヘッダーの左右の矢印とタイトル */
+.calendar-container thead th#prev,
+.calendar-container thead th#next {
+  width: 10%;
+  font-size: 1.5em;
+}
+
+.calendar-container thead th#title {
+  font-size: 1.3em;
+  width: 80%;
+}
+
+/* ホバーエフェクト */
+.calendar-container #prev:hover,
+.calendar-container #next:hover {
+  background-color: #3a7bd5;
+}
+
+.calendar-container #today:hover {
+  background-color: #4a69bd;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .calendar-container table {
+    width: 100%;
+    margin: 0;
+    border-radius: 0; /* 小さい画面では角丸をなくす */
+  }
+  .calendar-container {
+    padding: 0;
+  }
+  .calendar-container th,
+  .calendar-container td {
+    padding: 10px 5px; /* パディングを調整 */
+    font-size: 0.9em;
+  }
+  .calendar-container thead th {
+    font-size: 1em;
+    padding: 15px 5px;
+  }
+  .calendar-container thead th#prev,
+  .calendar-container thead th#next {
+    font-size: 1.2em;
+  }
+  .calendar-container thead th#title {
+    font-size: 1.1em;
+  }
+  .calendar-container tfoot td {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 0;
+  }
 }
