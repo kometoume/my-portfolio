@@ -33,4 +33,9 @@ section[id] {
   }
 }
 
+/* ぶら下げインデント */
+.hanging-indent {
+  text-indent: -1em;
+  padding-left: 1em;
+}
 

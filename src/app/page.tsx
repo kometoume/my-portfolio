@@ -212,9 +212,7 @@ export default function Home() {
                       <h4 className="text-lg font-semibold mb-2 text-gray-800">ポイント:</h4>
                       <ul className="list-disc list-inside text-gray-800">
                         {project.points.map((point, index) => (
-                          <li key={index} className="mb-1">
-                            {point}
-                          </li>
+                          <li key={index} className="hanging-indent">{point}</li>
                         ))}
                       </ul>
                     </div>
