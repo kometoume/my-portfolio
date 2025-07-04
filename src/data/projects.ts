@@ -72,16 +72,18 @@ export const projects: Project[] = [
   },
   {
   id: 'todo-app', // ユニークなIDを設定 (例: 'todo-app' など)
-  title: 'Todoリストアプリケーション (自主制作)',
+  title: '筋トレ習慣化Todoリストアプリ（自主制作）',
   description:
-    'ReactとNext.js、Tailwind CSSで構築した、シンプルなTodo管理アプリケーションです。ブラウザのローカルストレージを利用し、データの永続化を実現しました。',
+    '筋トレ初心者でも習慣化しやすいように設計されたTodo管理アプリです。ReactとNext.jsで構築し、最低限必要なトレーニング3種目を毎回初期表示。完了後に再表示される仕組みによって継続をサポートします。ブラウザのローカルストレージを使用し、データを永続化しています。',
   image: '/images/todo-app-thumbnail.png', // このアプリのスクリーンショット画像パスに置き換えてください
   // 例: publicフォルダ内に画像を保存する場合 /images/todo-app-thumbnail.png
   technologies: ['React', 'Next.js', 'Tailwind CSS', 'JavaScript'],
   demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/todos', // Vercelなどで公開したURLに置き換えてください
   points: [
-    'ローカルストレージを用いたデータ永続化',
-    'Tailwind CSSによる効率的なスタイリング',
+    '筋トレ継続を支援するため、全身に効く3種目（スクワット・ベンチプレス・デッドリフト）を自動で再表示',
+    'ユーザーが自由に補助種目を追加・完了・削除可能な柔軟な設計',
+    'ローカルストレージによるトレーニングデータの永続保存',
+    'Tailwind CSSを使ったシンプルかつ直感的なUIで、モバイルからの使用も想定',
   ],
 },
 {

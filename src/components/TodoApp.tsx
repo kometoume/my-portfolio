@@ -16,7 +16,7 @@ interface Todo {
 const initialTodos: Todo[] = [
   { id: 1, title: 'スクワット', isCompleted: false, sets: 3, reps: 12, weight: 30 },
   { id: 2, title: 'ベンチプレス', isCompleted: false, sets: 3, reps: 12, weight: 30 },
-  { id: 3, title: 'ラットプル', isCompleted: false, sets: 3, reps: 12, weight: 30 },
+  { id: 3, title: 'ラットプルダウン', isCompleted: false, sets: 3, reps: 12, weight: 30 },
 ];
 
 const TodoApp: React.FC = () => {
