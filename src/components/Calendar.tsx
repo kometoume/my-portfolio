@@ -4,7 +4,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 // 以下のCSSファイルのインポートは、このCanvas環境ではパス解決エラーとなるためコメントアウトしています。
 // 実際のNext.jsプロジェクトなどでは、この行を有効にしてCSSファイルをインポートしてください。
-// import '../app/calendar/Calendar.css';
+import '../app/calendar/Calendar.css';
 
 const Calendar: React.FC = () => {
   // `currentDate`は、"Today"ボタンで今日に戻る時や、日付のハイライトに使われる日付オブジェクト
