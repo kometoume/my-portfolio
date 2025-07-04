@@ -140,7 +140,7 @@ const TodoApp: React.FC = () => {
   return (
     <div className="container mx-auto p-6 max-w-xl bg-white rounded-xl shadow-2xl mt-5 border border-blue-100">
       <h1 className="text-2xl font-extrabold text-blue-800 mb-6 pb-4 border-b-4 border-blue-200 flex justify-between items-center">
-        現在のトレーニングメニュー
+        最低限のトレーニングメニュー
         <button
           onClick={purgeCompletedTodos}
           className="ml-4 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 text-base font-semibold cursor-pointer shadow-md"
@@ -217,7 +217,7 @@ const TodoApp: React.FC = () => {
 
       {/* 新しいToDoを追加するセクション */}
       <div className="mt-10 pt-6 border-t-4 border-dashed border-blue-300">
-        <h2 className="text-2xl font-bold mb-5 text-blue-700">新しいトレーニングを追加</h2>
+        <h2 className="text-2xl font-extrabold text-blue-800 mb-6 pb-4 border-b-4 border-blue-200 flex justify-between items-center">新しいトレーニングを追加</h2>
         <form onSubmit={addTodo} className="flex flex-col gap-4 p-5 bg-blue-100 rounded-lg shadow-inner">
           {/* 種目名入力フィールド */}
           <input
