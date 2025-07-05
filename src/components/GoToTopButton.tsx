@@ -29,7 +29,7 @@ const GoToTopButton: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed right-6 z-50 bottom-20 sm:bottom-32 md:bottom-5">
       {isVisible && (
         <button
           onClick={scrollToTop}

@@ -14,46 +14,16 @@ import { Project, projects } from '../data/projects';
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // NavbarPortalNodeの定義は残す
   const [navbarPortalNode, setNavbarPortalNode] = useState<HtmlPortalNode | null>(null);
-  const [pcNavbarHeight, setPcNavbarHeight] = useState(0);
 
-  const mobileHeaderHeightValue = 82;
-  const mobileHeaderHeight = `${mobileHeaderHeightValue}px`;
-
+  // Navbarの高さに関するuseEffectは完全に削除します
   useEffect(() => {
     if (typeof window !== 'undefined' && !navbarPortalNode) {
       setNavbarPortalNode(createHtmlPortalNode());
     }
-
-    const updatePcNavbarHeight = () => {
-      if (navbarPortalNode && navbarPortalNode.element) {
-        const navbarDom = navbarPortalNode.element;
-
-        // ここを修正: pcNavElement が HTMLElement であることをTypeScriptに伝えます
-        const pcNavElement = navbarDom.querySelector('nav.bg-gray-600.fixed') as HTMLElement;
-
-        if (pcNavElement) {
-          setPcNavbarHeight(pcNavElement.offsetHeight);
-        } else {
-          // ここも修正: relativePcNavElement が HTMLElement であることをTypeScriptに伝えます
-          const relativePcNavElement = navbarDom.querySelector('nav.bg-gray-600.relative') as HTMLElement;
-          if (relativePcNavElement) {
-            setPcNavbarHeight(relativePcNavElement.offsetHeight);
-          }
-        }
-      }
-    };
-
-    updatePcNavbarHeight();
-    window.addEventListener('resize', updatePcNavbarHeight);
-    window.addEventListener('scroll', updatePcNavbarHeight);
-
-    return () => {
-      window.removeEventListener('resize', updatePcNavbarHeight);
-      window.removeEventListener('scroll', updatePcNavbarHeight);
-    };
-  }, [navbarPortalNode]);
-
+    // ここにあったNavbarの高さ計算ロジックは全て削除
+  }, [navbarPortalNode]); // portalNodeがnullでないことを確認するために必要
 
   if (!navbarPortalNode) {
     return null;
@@ -68,18 +38,16 @@ export default function Home() {
       <OutPortal node={navbarPortalNode} />
 
       <main
-        className={`flex-grow container mx-auto p-4 sm:p-8`}
-        style={{
-          paddingTop: typeof window !== 'undefined' && window.innerWidth >= 768
-            ? `${pcNavbarHeight}px`
-            : `calc(${mobileHeaderHeight} + 1rem)`
-        }}
+        className={`flex-grow container mx-auto p-4 sm:p-8 
+                    pt-[72px] // ★★★ ここで単一ナビバーの高さ分の初期パディングを設定 ★★★
+                    `}
+        // style属性は完全に削除
       >
         {/* ... (残りのコンテンツは変更なし) ... */}
         <section id="about" className="bg-white p-6 mb-8 rounded-lg shadow-md mt-8">
           <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-800 pb-2 text-gray-800">About Me</h2>
           <p className="text-lg mb-4 text-gray-900">
-            八木美智惠です。大学院修了後、美術教員および教育機関の助手として教育現場で経験を積みました。その後、職業訓練校でWebデザインの知識を習得。現在は正社員のWebコーダーとして5年間、フルリモート環境下で業務に従事しています。自己管理を意識しながら業務を遂行し、円滑なコミュニケーションを心がけています。
+            はじめまして。八木美智惠と申します。大学院修了後、美術教員および教育機関の助手として教育現場で経験を積みました。その後、職業訓練校でWebデザインの知識を習得。現在は正社員のWebコーダーとして5年間、フルリモート環境下で業務に従事しています。自己管理を意識しながら業務を遂行し、円滑なコミュニケーションを心がけています。
           </p>
           <p className="text-lg text-gray-900">
             Web制作に携わる中で、より高い専門性を身につけ、スキルを向上させたいという思いが強まり、今後の成長を見据えて転職を決意いたしました。このポートフォリオサイトも、自身でReactとNext.jsを用いて開発しており、現在はTailwind CSSやTypeScript、Node.jsなどの技術も積極的に学習・活用しています。また、GitやGitHubを用いたバージョン管理にも取り組み、実務での経験を活かしながら、常に新しい知識を吸収し柔軟に対応できる力を身につけています。さらなる成長を目指して、前向きに取り組んでまいります。</p>

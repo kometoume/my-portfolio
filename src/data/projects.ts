@@ -80,7 +80,7 @@ export const projects: Project[] = [
   technologies: ['React', 'Next.js', 'Tailwind CSS', 'JavaScript'],
   demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/todos', // Vercelなどで公開したURLに置き換えてください
   points: [
-    '筋トレ継続を支援するため、全身に効く3種目（スクワット・ベンチプレス・デッドリフト）を自動で再表示',
+    '筋トレ継続を支援するため、全身に効く3種目（スクワット・ベンチプレス・ラットプルダウン）を自動で再表示',
     'ユーザーが自由に補助種目を追加・完了・削除可能な柔軟な設計',
     'ローカルストレージによるトレーニングデータの永続保存',
     'Tailwind CSSを使ったシンプルかつ直感的なUIで、モバイルからの使用も想定',
