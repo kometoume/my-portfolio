@@ -12,8 +12,7 @@
   box-sizing: border-box; /* パディングを幅に含める */
 }
 
-/* bodyに対するスタイルは、通常グローバルCSSファイルで定義するか、
-   ここでは不要なため削除しました。 */
+
 
 /* カレンダーテーブル */
 .calendar-container table {
