@@ -67,19 +67,19 @@ export default function Home() {
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 React / Next.js
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
-                  学習中
+                  3ヶ月
                 </span>
               </li>
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Tailwind CSS
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
-                  学習中
+                  3ヶ月
                 </span>
               </li>
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 TypeScript
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
-                  学習中
+                  3ヶ月
                 </span>
               </li>
             </ul>
@@ -107,7 +107,7 @@ export default function Home() {
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Node.js
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
-                  学習中
+                  3ヶ月
                 </span>
               </li>
             </ul>
@@ -118,7 +118,7 @@ export default function Home() {
               <li className="bg-blue-50 p-3 rounded-md shadow-sm text-gray-800">
                 Git / GitHub
                 <span className="ml-2 px-2 py-0.5 bg-green-600 text-white text-xs font-semibold rounded-full">
-                  学習中
+                  3ヶ月
                 </span>
               </li>
             </ul>
