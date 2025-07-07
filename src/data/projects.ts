@@ -14,6 +14,20 @@ export interface Project {
 
 // プロジェクトデータの配列
 export const projects: Project[] = [
+      {
+    id: 'project1',
+    title: '勤務先のWebサイト',
+    description:
+      '勤務先のWebサイトの制作・改修を担当しました。主にHTML, CSS, JavaScript, jQueryを用いてレスポンシブデザインに対応させ、視覚的な魅力を高めるスライダーを導入しました。バックエンドではPHPを使用してセキュアな問い合わせフォームを実装しています。デザイン面ではAdobe PhotoshopとIllustratorを活用し、サイト全体の品質向上に貢献しました。',
+    image: '/images/eding-thumbnail.png', // 仮の画像パス。実際にはあなたのプロジェクトのスクリーンショットを配置してください。
+    technologies: ['HTML', 'CSS', 'JavaScript', 'jQuery','PHP', 'Adobe Photoshop', 'Adobe Illustrator'],
+    demoLink: 'https://www.eding.co.jp', // デモサイトのURLに置き換えてください
+    points: [
+      'レスポンシブデザイン対応',
+      '問い合わせフォーム作成',
+      'スライダー導入',
+    ],
+  },
   {
     id: 'project1',
     title: 'クライアントのWebサイト',
@@ -90,7 +104,7 @@ export const projects: Project[] = [
   id: 'calendar-app', // ユニークなIDを設定 (例: 'calendar-app' など)
   title: 'インタラクティブカレンダー (自主制作)',
   description:
-    'JavaScript、HTML、CSSで基礎を構築し、React/Next.js環境へ移行したインタラクティブなカレンダーアプリです。現在の月日の表示、前後月への移動、そして今日の表示機能を提供します。',
+    'Reactを使ったシンプルなカレンダーコンポーネントです。日付の表示、月の移動、今日の表示、そして各日付ごとのトレーニング記録の管理とモーダル表示の機能を持っています。',
   image: '/images/calendar-app-thumbnail.png', // あなたのカレンダーアプリのスクリーンショット画像パスに置き換えてください
   technologies: ['React', 'Next.js', 'JavaScript', 'HTML', 'CSS'],
   demoLink: 'https://my-portfolio-michieyagis-projects.vercel.app/calendar', // あなたのポートフォリオサイト内のカレンダーアプリのURLに置き換えてください
